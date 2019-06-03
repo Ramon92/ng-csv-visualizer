@@ -26,7 +26,10 @@
               "apps/ng-csv-visualizer/src/favicon.ico",
               "apps/ng-csv-visualizer/src/assets"
             ],
-            "styles": ["apps/ng-csv-visualizer/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/ng-csv-visualizer/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -80,7 +83,9 @@
               "apps/ng-csv-visualizer/tsconfig.app.json",
               "apps/ng-csv-visualizer/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -116,6 +121,39 @@
           "options": {
             "tsConfig": "apps/ng-csv-visualizer-e2e/tsconfig.e2e.json"
           }
+        }
+      }
+    },
+    "material": {
+      "projectType": "library",
+      "root": "libs/material",
+      "sourceRoot": "libs/material/src",
+      "prefix": "ng-csv-visualizer",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/tsconfig.lib.json",
+              "libs/material/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/material/jest.config.js",
+            "tsConfig": "libs/material/tsconfig.spec.json",
+            "setupFile": "libs/material/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

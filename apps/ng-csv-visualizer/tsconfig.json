@@ -3,5 +3,12 @@
   "compilerOptions": {
     "types": ["node", "jest"]
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
+  "baseUrl": ".",
+  "paths": {
+    "@csv-vis/material": [
+      "libs/material/src/index.ts"
+    ]
+  }
+
 }

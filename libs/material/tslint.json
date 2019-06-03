@@ -1,0 +1,7 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [true, "attribute", "ngCsvVisualizer", "camelCase"],
+    "component-selector": [true, "element", "ng-csv-visualizer", "kebab-case"]
+  }
+}

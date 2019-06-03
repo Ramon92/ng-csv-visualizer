@@ -13,6 +13,9 @@
     },
     "ng-csv-visualizer": {
       "tags": []
+    },
+    "material": {
+      "tags": []
     }
   }
 }
