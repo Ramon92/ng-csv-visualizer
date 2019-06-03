@@ -4,29 +4,42 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SortService {
-  descend(column: string): (a: Object,b: Object) => number {
+
+  static compareString(a: string, b: string): number {
+    const lowerA: string = a.toLowerCase();
+    const lowerB: string = b.toLowerCase();
+    return lowerA.localeCompare(lowerB)
+  }
+
+  static compareNumber(a: number,b: number): number{
+    return a - b;
+  }
+
+  descend(columnName: string): (a: Object,b: Object) => number {
     return (a, b): number => {
-      const lowerA = a[column].toLowerCase();
-      const lowerB = b[column].toLowerCase();
-      if (lowerA < lowerB) {
-        return 1;
-      } else if (lowerA > lowerB) {
-        return -1;
+      const rowItemA: any = a[columnName];
+      const rowItemB: any = b[columnName];
+      const isString = isNaN(rowItemA) && typeof rowItemA === 'string';
+      const isNumber = !isNaN(rowItemA);
+      if (isString) {
+        return SortService.compareString(rowItemB, rowItemA);
+      } else if(isNumber){
+        return SortService.compareNumber(rowItemB, rowItemA);
       }
-      return 0;
     }
   }
 
-  ascend(column: string): (a: Object,b: Object) => number  {
+  ascend(columnName: string): (a: Object,b: Object) => number  {
     return (a, b): number => {
-      const lowerA = a[column].toLowerCase();
-      const lowerB = b[column].toLowerCase();
-      if (lowerA > lowerB) {
-        return 1;
-      } else if (lowerA < lowerB) {
-        return -1;
+      const rowItemA: any = a[columnName];
+      const rowItemB: any = b[columnName];
+      const isString = isNaN(rowItemA) && typeof rowItemA === 'string';
+      const isNumber = !isNaN(rowItemA);
+      if (isString) {
+        return SortService.compareString(rowItemA, rowItemB);
+      } else if(isNumber){
+        return SortService.compareNumber(rowItemA, rowItemB);
       }
-      return 0;
     }
   }
 }
